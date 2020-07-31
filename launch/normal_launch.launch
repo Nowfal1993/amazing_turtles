@@ -1,0 +1,7 @@
+<launch>
+
+	<node pkg="amazing_turtles" type="beginner_task" name="talker_node" output="screen"/>
+
+	<node pkg="amazing_turtles" type="normal_task" name="listener_node" output="screen"/>
+
+</launch>

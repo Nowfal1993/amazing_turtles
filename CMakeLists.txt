@@ -191,7 +191,7 @@ include_directories(
 #   # myfile1
 #   # myfile2
 #   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-# )
+
 
 #############
 ## Testing ##
@@ -205,3 +205,22 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+add_executable(beginner_task src/beginner_task.cpp)
+
+target_link_libraries(beginner_task 
+	${catkin_LIBRARIES}
+)
+
+add_executable(normal_task src/normal_task.cpp)
+
+target_link_libraries(normal_task 
+	${catkin_LIBRARIES}
+)
+
+add_executable(normal_task_triangle src/normal_task_triangle.cpp)
+
+target_link_libraries(normal_task_triangle 
+	${catkin_LIBRARIES}
+)
+

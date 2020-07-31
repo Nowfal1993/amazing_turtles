@@ -1,0 +1,12 @@
+<launch>
+
+	<node pkg="turtlesim" type="turtlesim_node" name="turtlesim" output="screen"/>
+
+	<node pkg="amazing_turtles" type="normal_task_triangle" name="turtle1" output="screen">
+
+		
+	</node>
+
+	
+	
+</launch>

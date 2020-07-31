@@ -1,0 +1,5 @@
+<launch>
+
+	<node pkg="amazing_turtles" type="beginner_task" name="talker_node" output="screen"/>
+
+</launch>
