@@ -33,9 +33,9 @@ Terminal 3:
 rostopic echo /chatter
 ```
 
-## 3. Normal_Part_1
+## 3. Normal_task_1
 
-Normal_launch runs the beginner.cpp and normal_task.cpp programs.
+Normal_launch runs the normal_task.cpp and normal_task.cpp programs.
 
 normal_task.cpp reads the ROS topic called chatter, and will print its info to the ROS terminal.
 
@@ -45,19 +45,30 @@ normal_task.cpp reads the ROS topic called chatter, and will print its info to t
 Terminal 1, in the catkin folder:
 ```bash
 catkin_make
-roscore
+roslaunch amazing_turtles normal_launch.launch
 ```
 
-Terminal 2:
+## 3. Normal_task_2
+
+Normal_task_2_try.launch runs the normal_task_2_triangle.cpp  programs.
+
+normal_task_2_triangle.cpp moves the turtle in a triangular path using the turtlebot simulator.
+
+
+### Usage
+
+Terminal 1, in the catkin folder:
 ```bash
-roslaunch amazing_turtles normal_Part1_launch.launch
+catkin_make
+roslaunch amazing_turtles normal_task_2_try.launch
 ```
 
 
 
 ## 5. Contributing
-Corrections are welcome. For major changes, please contact Marti Zaera.
+Corrections are welcome. For major changes, please contact Nowfal Manakkaparambil Ali.
+email: manowfal07@gmail.com
 
-
+s
 ## 6. License
 [RobotCraft](https://robotcraft.ingeniarius.pt/)

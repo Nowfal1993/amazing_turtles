@@ -218,9 +218,38 @@ target_link_libraries(normal_task
 	${catkin_LIBRARIES}
 )
 
-add_executable(normal_task_triangle src/normal_task_triangle.cpp)
+#add_executable(normal_task_triangle src/normal_task_triangle.cpp)
 
-target_link_libraries(normal_task_triangle 
+#target_link_libraries(normal_task_triangle 
+#	${catkin_LIBRARIES}
+#)
+
+#add_executable(normal_task_triangle_2 src/normal_task_triangle_2.cpp)
+
+#target_link_libraries(normal_task_triangle_2 
+	#${catkin_LIBRARIES}
+#)
+
+#add_executable(normal_task_triangle_3 src/normal_task_triangle_3.cpp)
+
+#target_link_libraries(normal_task_triangle_3 
+#	${catkin_LIBRARIES}
+#)
+
+
+
+add_executable(normal_task_2_triangle src/normal_task_2_triangle.cpp)
+
+target_link_libraries(normal_task_2_triangle 
 	${catkin_LIBRARIES}
 )
+
+
+add_executable(ninja_task_1 src/ninja_task_1.cpp)
+
+target_link_libraries(ninja_task_1 
+	${catkin_LIBRARIES}
+)
+
+
 
