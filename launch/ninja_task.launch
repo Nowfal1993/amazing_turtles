@@ -1,7 +1,12 @@
 <launch>
 
-	<node pkg="amazing_turtles" type="beginner_task" name="talker_node" output="screen"/>
+	<node pkg="turtlesim" type="turtlesim_node" name="turtlesim" output="screen"/>
 
-	<node pkg="amazing_turtles" type="ninja_task_1" name="turtle_server" output="screen"/>
+	<node pkg="amazing_turtles" type="ninja_task_1" name="turtle_server" output="screen">
+		<remap from="cmd_vel" to="turtle1/cmd_vel"/>
+
+	</node>
+
+	
 
 </launch>

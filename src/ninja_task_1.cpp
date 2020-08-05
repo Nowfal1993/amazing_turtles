@@ -3,55 +3,73 @@
 #include "std_msgs/String.h"
 #include "geometry_msgs/Twist.h"
 #include "turtlesim/Spawn.h"
-
-geometry_msgs::Twist vel_msg;
-
-void callback(const geometry_msgs::Twist & msg)
-{
-	vel_msg.linear.x = msg.linear.x;
-	vel_msg.linear.y = msg.linear.y;
-	vel_msg.linear.z = msg.linear.z;
-	vel_msg.angular.x = msg.angular.x;
-	vel_msg.angular.y = msg.angular.y;
-	vel_msg.angular.z = msg.angular.z;
-}
+#include "amazing_turtles/ninja_srv.h"
 
 
 class Node_Seviceserver
 {
 	private:
-		ros::NodeHandle n; 
-    	//initialising the publisher
-		ros::Publisher pub = n.advertise<std_msgs::String>("turtle1/cmd_vel", 1000);    	
-		ros::Subscriber sub = n.subscribe("turtle_server/cmd_vel", 1000, callback);
+		ros::NodeHandle n;
+    	ros::Subscriber sub;
+    	ros::Publisher pub;
+    	ros::ServiceServer srv;
+
+    	geometry_msgs::Twist msg;
+    	//geometry_msgs::Twist msg_2;
+
+    	bool service_bool;
 
 	public:
-    	//TurtleController()
-    	//{
-        	// Initialize ROS
-        	//ros::NodeHandle n;
 
-        	// Create a publisher object, able to push messages
-        	//cmd_vel_pub = n.advertise<geometry_msgs::Twist>("cmd_vel", 1000); //1000 means we are creating a buffer for 1000 messages
-   		 //}
+		void Move_callback(const geometry_msgs::Twist vel_msg)
+    	{
+      		this->msg=vel_msg;
+    	}
 
+    	bool Service_callback(amazing_turtles::ninja_srv::Request & request, amazing_turtles::ninja_srv::Response& response)
+   		{
+	   		if(request.ctrl)
+	   		{
+		        this->service_bool = true;
+		    }
+		    else
+		    {
+
+		        this->service_bool = false ;
+		    }
+
+	      	return true;
+    	}
+
+		Node_Seviceserver()
+		{
+	        this->n = ros::NodeHandle();
+	        this->sub = n.subscribe("keyboard/cmd_vel", 1000, &Node_Seviceserver::Move_callback, this );
+	        this->pub =  n.advertise<geometry_msgs::Twist>("turtle1/cmd_vel", 1000);
+
+	        this->srv = n.advertiseService("ninja_service", &Node_Seviceserver::Service_callback, this);
+	        //this->service = n.advertiseService("ninja_service", &Turtle_Srv::Service_callback, this);
+	        ros::Duration(1).sleep();
+    	}
+
+    	
 
 
     	void run()
     	{
-	        // Send messages in a loop
-	        ros::Rate loop_rate(10);
-	        geometry_msgs::Twist msg;
+
+	        ros::Rate loop_rate(100);
+
 	        while (ros::ok())
 	        {
-	        	this->pub.publish(msg);
-	            ros::spinOnce();
-
-	            loop_rate.sleep(); // this is basically how we  defining the rate
-	        }	
-    	}
-
-
+	        	if(this->service_bool)
+	        	{
+	           		this->pub.publish(this->msg);
+	           	}
+	        	ros::spinOnce();
+	            loop_rate.sleep();
+	        }
+	    }
 
 };
 

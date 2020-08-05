@@ -12,6 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -61,6 +62,12 @@ find_package(catkin REQUIRED COMPONENTS
 #   Service2.srv
 # )
 
+
+add_service_files(
+  FILES
+  ninja_srv.srv
+)
+
 ## Generate actions in the 'action' folder
 # add_action_files(
 #   FILES
@@ -69,10 +76,11 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   geometry_msgs#   std_msgs
-# )
+generate_messages(
+  DEPENDENCIES
+   geometry_msgs
+   std_msgs
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -82,7 +90,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## package, follow these steps:
 ## * In the file package.xml:
 ##   * add a build_depend and a exec_depend tag for "dynamic_reconfigure"
-## * In this file (CMakeLists.txt):
+## * In this file (CMakeLisadd_service_files(
 ##   * add "dynamic_reconfigure" to
 ##     find_package(catkin REQUIRED COMPONENTS ...)
 ##   * uncomment the "generate_dynamic_reconfigure_options" section below
@@ -244,12 +252,17 @@ target_link_libraries(normal_task_2_triangle
 	${catkin_LIBRARIES}
 )
 
+add_executable(normal_task_2_withClasses src/normal_task_2_withClasses.cpp)
+
+target_link_libraries(normal_task_2_withClasses 
+	${catkin_LIBRARIES}
+)
+
 
 add_executable(ninja_task_1 src/ninja_task_1.cpp)
 
 target_link_libraries(ninja_task_1 
 	${catkin_LIBRARIES}
 )
-
 
 
